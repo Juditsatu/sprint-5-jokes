@@ -61,3 +61,4 @@ function generateJoke() {
 function nextJoke() {
     return console.log(generateJoke());
 }
+;

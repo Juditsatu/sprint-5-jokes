@@ -1,0 +1,62 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-size: cover;
+}
+
+/* Custom default button */
+.btn-secondary {
+    color: white;
+    background-color: #44c2fd;
+}
+
+.btn-secondary:hover {
+    background-color: #8c61ff;
+}
+
+.container-fluid {
+    background-color: white;
+    border-radius: 5rem;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    .container-fluid {
+        margin: 5rem;
+        width: 5rem;
+        border-radius: 4rem;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .container-fluid {
+        width: 30rem;
+        border-radius: 4rem;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .container-fluid {
+        width: 55rem;
+    }
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .container-fluid {
+        width: 55rem;
+    }
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+    .container-fluid {
+        width: 70rem;
+    }
+}
