@@ -1,16 +1,30 @@
-const jokesUrl = "https://icanhazdadjoke.com/";
-let options = { 
-    headers: {
-        "Accept" : "application/json" 
-    }
-};
+const DAD_JOKE = "https://icanhazdadjoke.com/";
 
 async function generateJoke() {
-    const dataJokes:any = await fetch(jokesUrl, options);
+
+    let options = { 
+        headers: {
+            "Accept" : "application/json" 
+        }
+    };
+
+    const dataJokes:any = await fetch(DAD_JOKE, options);
     const data:any = await dataJokes.json();
-    console.log(data);
+
+    const printJoke = document.getElementById("jokeDisplay");
+    if (printJoke) printJoke.innerHTML = data.joke;
+
+    // const listOfJokes = [];
+    // if (listOfJokes.length == 0) {
+    //     listOfJokes.push(data);
+    // } 
+    const reportAcudits = [];
+    // console.log("joke list", listOfJokes);
+    //console.log("joke:", data.joke);
 };
 
 function nextJoke() {
-    return console.log(generateJoke());
+    generateJoke();
+    // const printJoke = document.getElementById("jokeDisplay");
+    // if (printJoke) printJoke.innerHTML = joke;
 };

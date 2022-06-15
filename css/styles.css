@@ -7,6 +7,14 @@ body {
     background-size: cover;
 }
 
+.btn {
+    color: darkorange;
+}
+
+.btn:hover {
+    color: #44c2fd;
+}
+
 /* Custom default button */
 .btn-secondary {
     color: white;
@@ -26,8 +34,7 @@ body {
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
     .container-fluid {
-        margin: 5rem;
-        width: 5rem;
+        width: 30rem;
         border-radius: 4rem;
     }
 }

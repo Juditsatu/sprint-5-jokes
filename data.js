@@ -34,24 +34,28 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var jokesUrl = "https://icanhazdadjoke.com/";
-var options = {
-    headers: {
-        "Accept": "application/json"
-    }
-};
+var DAD_JOKE = "https://icanhazdadjoke.com/";
 function generateJoke() {
     return __awaiter(this, void 0, void 0, function () {
-        var dataJokes, data;
+        var options, dataJokes, data, printJoke, reportAcudits;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, fetch(jokesUrl, options)];
+                case 0:
+                    options = {
+                        headers: {
+                            "Accept": "application/json"
+                        }
+                    };
+                    return [4 /*yield*/, fetch(DAD_JOKE, options)];
                 case 1:
                     dataJokes = _a.sent();
                     return [4 /*yield*/, dataJokes.json()];
                 case 2:
                     data = _a.sent();
-                    console.log(data);
+                    printJoke = document.getElementById("jokeDisplay");
+                    if (printJoke)
+                        printJoke.innerHTML = data.joke;
+                    reportAcudits = [];
                     return [2 /*return*/];
             }
         });
@@ -59,6 +63,8 @@ function generateJoke() {
 }
 ;
 function nextJoke() {
-    return console.log(generateJoke());
+    generateJoke();
+    // const printJoke = document.getElementById("jokeDisplay");
+    // if (printJoke) printJoke.innerHTML = joke;
 }
 ;
