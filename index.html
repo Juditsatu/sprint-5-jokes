@@ -15,21 +15,21 @@
 <body class="d-flex flex-column min-vh-100 text-center page-header-image img-fluid" style="background-image: url('./images/blurry-gradient-haikei.svg');">
     <header class="mb-auto p-3">
         <nav>
-            <p class="nav nav-masthead justify-content-left float-md-start text-white" id="show-weather">🌤 | 26 ºC</p>
+            <h3 class="nav nav-masthead justify-content-left float-md-start text-white" id="show-weather">🌤 | 26 ºC</h3>
         </nav>
     </header>
     <div class="container-fluid d-flex py-5 mx-auto flex-column">
         <div class="row justify-content-md-center">
             <div class="col-12">
-                <h1>Preparat per riure? 😂</h1>
+                <h1 class="fw-bolder">Preparat per riure?</h1>
                 <p class="lead p-5" id="jokeDisplay">
                     I used to work in a shoe recycling shop. It was sole destroying.
                 </p>
-                <button class="btn" onclick="rateJoke(1)"><i class="fa-xl fa-regular fa-face-rolling-eyes"></i></button>
-                <button class="btn" onclick="rateJoke(2)"><i class="fa-xl fa-regular fa-face-meh"></i></button>
-                <button class="btn" onclick="rateJoke(3)"><i class="fa-xl fa-regular fa-face-laugh-squint"></i></button>
+                <button class="btn" onclick="rateJoke(1)"><i class="fa-3x fa-regular fa-face-rolling-eyes"></i></button>
+                <button class="btn" onclick="rateJoke(2)"><i class="fa-3x fa-regular fa-face-meh"></i></button>
+                <button class="btn" onclick="rateJoke(3)"><i class="fa-3x fa-regular fa-face-laugh-squint"></i></button>
                 <p class="lead pt-3">
-                    <button type="button" class="btn btn-lg btn-secondary fw-bold" onclick="nextJoke()">Següent
+                    <button type="button" class="btn btn-lg btn btn-outline-dark fw-bold" onclick="nextJoke()">Següent
                         acudit</button>
                 </p>
             </div>

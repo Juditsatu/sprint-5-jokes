@@ -7,22 +7,31 @@ body {
     background-size: cover;
 }
 
-.btn {
-    color: darkorange;
+/* icon style */
+i {
+    box-shadow: 5px 7px gold;
+    border-radius: 3rem;
 }
 
-.btn:hover {
-    color: #44c2fd;
+.fa-3x {
+    color: rgba(0, 0, 0, 0.75);   /* RGBA Color (Alternative Transparency) */
+    background-color: none;
+}
+
+.fa-3x:hover {
+    color: #8c61ff;
+    box-shadow: 8px 12px gold;
 }
 
 /* Custom default button */
-.btn-secondary {
-    color: white;
-    background-color: #44c2fd;
+.btn-outline-dark, .btn-outline-dark:focus {
+    box-shadow: 5px 7px gold;
 }
 
-.btn-secondary:hover {
-    background-color: #8c61ff;
+.btn-outline-dark:hover {
+    color: black;
+    background-color: gold;
+    box-shadow: 10px 15px rgb(0, 0, 0);
 }
 
 .container-fluid {
