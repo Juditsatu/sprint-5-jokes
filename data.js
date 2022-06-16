@@ -35,9 +35,36 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var DAD_JOKE = "https://icanhazdadjoke.com/";
+var WEATHER = "https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=abd700ead8fc5a6f7b3b5a9ed2b031f6";
+var reportJokes = [];
+//clave API meteorologia abd700ead8fc5a6f7b3b5a9ed2b031f6
+function getDate() {
+    var date = new Date();
+    var arrDate = date.toISOString().slice(0, 10).split("-").reverse();
+    var textDate = arrDate.toString().replace(/,/g, "-");
+    return textDate;
+}
+;
+// let showWeather = document.getElementById('show-weather');
+function getLocation() {
+    navigator.geolocation.getCurrentPosition(function (position) { return console.log(position); });
+}
+function generateWeather() {
+    var lat = getLocation();
+    console.log("latitude", lat);
+    var key = 'abd700ead8fc5a6f7b3b5a9ed2b031f6';
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+    fetch("https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=".concat(key), requestOptions)
+        .then(function (response) { return response.text(); })
+        .then(function (result) { return console.log(result); })["catch"](function (error) { return console.log('error', error); });
+}
+;
 function generateJoke() {
     return __awaiter(this, void 0, void 0, function () {
-        var options, dataJokes, data, printJoke, reportAcudits;
+        var options, dataJokes, data, printJoke, date, jokeObj;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -55,7 +82,19 @@ function generateJoke() {
                     printJoke = document.getElementById("jokeDisplay");
                     if (printJoke)
                         printJoke.innerHTML = data.joke;
-                    reportAcudits = [];
+                    date = getDate();
+                    jokeObj = {
+                        date: date,
+                        joke: data.joke,
+                        score: 0
+                    };
+                    if (reportJokes.length == 0) {
+                        reportJokes.push(jokeObj);
+                    }
+                    else {
+                        reportJokes.push(jokeObj);
+                    }
+                    console.log("report jokes", reportJokes);
                     return [2 /*return*/];
             }
         });
@@ -64,7 +103,11 @@ function generateJoke() {
 ;
 function nextJoke() {
     generateJoke();
-    // const printJoke = document.getElementById("jokeDisplay");
-    // if (printJoke) printJoke.innerHTML = joke;
+    //   let data: any = generateJoke();
 }
 ;
+function rateJoke(score) {
+    generateJoke();
+}
+;
+getLocation();
