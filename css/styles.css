@@ -21,6 +21,13 @@ body {
     min-height:100%;
 }
 
+#text-joke {
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+}
+
 /* icon style */
 i {
     box-shadow: 5px 7px gold;

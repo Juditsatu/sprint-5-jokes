@@ -1,8 +1,8 @@
 const DAD_JOKE = "https://icanhazdadjoke.com/";
 const WEATHER = "https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=abd700ead8fc5a6f7b3b5a9ed2b031f6"
-const reportJokes = [];
+const reportJokes:any = [];
 //clave API meteorologia abd700ead8fc5a6f7b3b5a9ed2b031f6
-
+// let showWeather = document.getElementById('show-weather');
 
 function getDate() {
     const date = new Date();
@@ -11,10 +11,8 @@ function getDate() {
     return textDate;
 };
 
-// let showWeather = document.getElementById('show-weather');
-
 function getLocation() {
-    navigator.geolocation.getCurrentPosition((position: GeolocationPosition) => console.log(position));
+    return navigator.geolocation.getCurrentPosition((position: GeolocationPosition) => console.log(position));
 }
 
 function generateWeather() {
@@ -27,7 +25,7 @@ function generateWeather() {
         redirect: 'follow'
       };
       
-      fetch(`https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=${key}`, requestOptions)
+      const weather = fetch(`https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=${key}`, requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
@@ -44,8 +42,8 @@ async function generateJoke() {
     const dataJokes: any = await fetch(DAD_JOKE, options);
     const data: any = await dataJokes.json();
 
-    const printJoke = document.getElementById("jokeDisplay");
-    if (printJoke) printJoke.innerHTML = data.joke;
+    const printJoke: HTMLElement | null = document.getElementById("jokeDisplay");
+    printJoke.innerHTML = data.joke;
 
     const date = getDate();
 
@@ -54,22 +52,17 @@ async function generateJoke() {
         joke: data.joke,
         score: 0
     };
+    reportJokes.push(jokeObj)
 
-    if (reportJokes.length == 0) {
-      reportJokes.push(jokeObj);
-    } else {
-      reportJokes.push(jokeObj);
-    }
-    console.log("report jokes", reportJokes);
+    //console.log("report jokes", reportJokes);
 };
 
-function nextJoke() {
+function rateJoke(score: number) {
+  //let index: number = reportJokes.findIndex(i => i.score == 0);
+  reportJokes[reportJokes.length -1].score = score;
+
+  console.log("report jokes score", reportJokes)
   generateJoke();
-//   let data: any = generateJoke();
-};
-
-function rateJoke(score) {
-    generateJoke();
 };
 
 getLocation();

@@ -38,6 +38,7 @@ var DAD_JOKE = "https://icanhazdadjoke.com/";
 var WEATHER = "https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=abd700ead8fc5a6f7b3b5a9ed2b031f6";
 var reportJokes = [];
 //clave API meteorologia abd700ead8fc5a6f7b3b5a9ed2b031f6
+// let showWeather = document.getElementById('show-weather');
 function getDate() {
     var date = new Date();
     var arrDate = date.toISOString().slice(0, 10).split("-").reverse();
@@ -45,9 +46,8 @@ function getDate() {
     return textDate;
 }
 ;
-// let showWeather = document.getElementById('show-weather');
 function getLocation() {
-    navigator.geolocation.getCurrentPosition(function (position) { return console.log(position); });
+    return navigator.geolocation.getCurrentPosition(function (position) { return console.log(position); });
 }
 function generateWeather() {
     var lat = getLocation();
@@ -57,7 +57,7 @@ function generateWeather() {
         method: 'GET',
         redirect: 'follow'
     };
-    fetch("https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=".concat(key), requestOptions)
+    var weather = fetch("https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=".concat(key), requestOptions)
         .then(function (response) { return response.text(); })
         .then(function (result) { return console.log(result); })["catch"](function (error) { return console.log('error', error); });
 }
@@ -80,33 +80,24 @@ function generateJoke() {
                 case 2:
                     data = _a.sent();
                     printJoke = document.getElementById("jokeDisplay");
-                    if (printJoke)
-                        printJoke.innerHTML = data.joke;
+                    printJoke.innerHTML = data.joke;
                     date = getDate();
                     jokeObj = {
                         date: date,
                         joke: data.joke,
                         score: 0
                     };
-                    if (reportJokes.length == 0) {
-                        reportJokes.push(jokeObj);
-                    }
-                    else {
-                        reportJokes.push(jokeObj);
-                    }
-                    console.log("report jokes", reportJokes);
+                    reportJokes.push(jokeObj);
                     return [2 /*return*/];
             }
         });
     });
 }
 ;
-function nextJoke() {
-    generateJoke();
-    //   let data: any = generateJoke();
-}
-;
 function rateJoke(score) {
+    //let index: number = reportJokes.findIndex(i => i.score == 0);
+    reportJokes[reportJokes.length - 1].score = score;
+    console.log("report jokes score", reportJokes);
     generateJoke();
 }
 ;
