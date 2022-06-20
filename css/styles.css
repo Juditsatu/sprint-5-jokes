@@ -11,12 +11,11 @@ body {
     background-size: auto;
     background-repeat: no-repeat;
     background-position: center;
-    border-style: dotted;
 }
 
 #big-blob {
-    height: 800px;
-    width: 800px;
+    height: 700px;
+    width: 700px;
     padding: 0;
     margin: 0;
     transition: border-radius 1.2s;
@@ -30,18 +29,20 @@ body {
 
 /* icon style */
 i {
-    box-shadow: 5px 7px gold;
+    background-color: gold; 
+    width: 46px;
+    height: 46px;
     border-radius: 3rem;
+    padding: .3rem;
 }
 
 .fa-3x {
-    color: rgba(0, 0, 0, 0.75);   /* RGBA Color (Alternative Transparency) */
+    color: rgba(0, 0, 0, 0.75); 
     background-color: none;
 }
 
 .fa-3x:hover {
-    color: gold;
-    box-shadow: 10px 15px rgb(0, 0, 0);
+    padding: 0;
 }
 
 /* Custom default button */
@@ -69,12 +70,20 @@ i {
         width: 30rem;
         border-radius: 4rem;
     }
+
+    #jokeDisplay {
+        width: 100%;
+    }
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
     .container-fluid {
         width: 55rem;
+    }
+
+    #jokeDisplay {
+        width: 50%;
     }
 }
 
@@ -83,11 +92,19 @@ i {
     .container-fluid {
         width: 55rem;
     }
+
+    #jokeDisplay {
+        width: 50%;
+    }
 }
 
 /* XX-Large devices (larger desktops, 1400px and up) */
 @media (min-width: 1400px) {
     .container-fluid {
         width: 70rem;
+    }
+
+    #jokeDisplay {
+        width: 50%;
     }
 }
