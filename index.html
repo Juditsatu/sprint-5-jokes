@@ -16,15 +16,16 @@
 <body class="d-flex flex-column min-vh-100 text-center page-header-image img-fluid">
     <header class="mb-auto p-3">
         <nav>
-            <h3 class="nav nav-masthead justify-content-left float-md-start text-dark" id="show-weather">🌤 | 26 ºC</h3>
+            <h3 class="nav nav-masthead justify-content-start float-md-start text-dark" id="show-weather"></h3>
         </nav>
+        <div id="small-blob" class="justify-content-end" style="background-image: url('./images/small-blob-1.svg'); background-repeat: no-repeat;"> </div>
     </header>
-    <div class="container d-flex py-5 mx-auto flex-column img-fluid"
-    style="background-image: url('./images/big-blob.svg');">
-        <div class="row justify-content-md-center">
+    <div class="container d-flex py-5 mx-auto flex-column img-fluid w-100 aligns-items-center justify-content-center"
+    style="background-image: url('./images/big-blob.svg');" id="big-blob">
+        <div class="row justify-content-md-center text-break ">
             <div class="col-12" id="text-joke">
                 <h1 class="fw-bolder">Preparat per riure?</h1>
-                <p class="lead p-5" id="jokeDisplay">
+                <p class="lead p-5 m-3" id="jokeDisplay">
                      
                 </p>
                 <button class="btn" onclick="rateJoke(1)"><i class="fa-3x fa-regular fa-face-rolling-eyes"></i></button>
@@ -36,9 +37,8 @@
                 </p>
             </div>
         </div>
+        <div style="background-image: url('./images/small-blob-2.svg');"> </div>
     </div>
-    <div style="background-image: url('./images/small-blob-1.svg');"> </div>
-    <div style="background-image: url('./images/small-blob-2.svg');"> </div>
     <footer class="mt-auto py-3 text-white bg-dark">
         <div class="inner">
             <p>

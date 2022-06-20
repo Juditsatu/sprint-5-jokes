@@ -34,57 +34,83 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var DAD_JOKE = "https://icanhazdadjoke.com/";
-var WEATHER = "https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=abd700ead8fc5a6f7b3b5a9ed2b031f6";
 var reportJokes = [];
-//clave API meteorologia abd700ead8fc5a6f7b3b5a9ed2b031f6
-// let showWeather = document.getElementById('show-weather');
 function getDate() {
-    var date = new Date();
-    var arrDate = date.toISOString().slice(0, 10).split("-").reverse();
-    var textDate = arrDate.toString().replace(/,/g, "-");
-    return textDate;
+    return new Date().toLocaleDateString("es-ES");
 }
 ;
 function getLocation() {
-    return navigator.geolocation.getCurrentPosition(function (position) { return console.log(position); });
+    navigator.geolocation.getCurrentPosition(generateWeather);
 }
-function generateWeather() {
-    var lat = getLocation();
-    console.log("latitude", lat);
-    var key = 'abd700ead8fc5a6f7b3b5a9ed2b031f6';
-    var requestOptions = {
-        method: 'GET',
-        redirect: 'follow'
-    };
-    var weather = fetch("https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=".concat(key), requestOptions)
-        .then(function (response) { return response.text(); })
-        .then(function (result) { return console.log(result); })["catch"](function (error) { return console.log('error', error); });
+function generateWeather(position) {
+    return __awaiter(this, void 0, void 0, function () {
+        var showWeather, lat, lon, key, lang, units, url, requestOptions, result, data, temp, icon;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    showWeather = document.getElementById('show-weather');
+                    lat = position.coords.latitude;
+                    lon = position.coords.longitude;
+                    key = 'abd700ead8fc5a6f7b3b5a9ed2b031f6';
+                    lang = 'ca';
+                    units = 'metric';
+                    url = "https://api.openweathermap.org/data/2.5/weather?lat=".concat(lat, "&lon=").concat(lon, "&appid=").concat(key, "&units=").concat(units, "&lang=").concat(lang);
+                    requestOptions = {
+                        method: "GET",
+                        redirect: "follow"
+                    };
+                    return [4 /*yield*/, fetch(url, requestOptions)];
+                case 1:
+                    result = _a.sent();
+                    return [4 /*yield*/, result.json()];
+                case 2:
+                    data = _a.sent();
+                    temp = Math.floor(data.main.temp);
+                    icon = "<img\n    src=\"http://openweathermap.org/img/wn/".concat(data.weather[0].icon, ".png\"\n    alt=\"").concat(data.weather[0].description, "\"/>");
+                    showWeather.innerHTML = "".concat(icon, " | ").concat(temp, " \u00BAC");
+                    return [2 /*return*/];
+            }
+        });
+    });
 }
 ;
 function generateJoke() {
     return __awaiter(this, void 0, void 0, function () {
-        var options, dataJokes, data, printJoke, date, jokeObj;
+        var DAD_JOKE_URL, NORRIS_URL, requestOptions1, dadJokes, jokes1, requestOptions2, chuckJokes, jokes2, numRandom, result, printJoke, date, jokeObj;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    options = {
+                    DAD_JOKE_URL = "https://icanhazdadjoke.com/";
+                    NORRIS_URL = "https://api.chucknorris.io/jokes/random";
+                    requestOptions1 = {
                         headers: {
-                            "Accept": "application/json"
+                            Accept: "application/json"
                         }
                     };
-                    return [4 /*yield*/, fetch(DAD_JOKE, options)];
+                    return [4 /*yield*/, fetch(DAD_JOKE_URL, requestOptions1)];
                 case 1:
-                    dataJokes = _a.sent();
-                    return [4 /*yield*/, dataJokes.json()];
+                    dadJokes = _a.sent();
+                    return [4 /*yield*/, dadJokes.json()];
                 case 2:
-                    data = _a.sent();
+                    jokes1 = _a.sent();
+                    requestOptions2 = {
+                        method: "GET",
+                        redirect: "follow"
+                    };
+                    return [4 /*yield*/, fetch(NORRIS_URL, requestOptions2)];
+                case 3:
+                    chuckJokes = _a.sent();
+                    return [4 /*yield*/, chuckJokes.json()];
+                case 4:
+                    jokes2 = _a.sent();
+                    numRandom = Math.round(Math.random());
+                    result = numRandom ? jokes1.joke : jokes2.value;
                     printJoke = document.getElementById("jokeDisplay");
-                    printJoke.innerHTML = data.joke;
+                    printJoke.innerHTML = result;
                     date = getDate();
                     jokeObj = {
                         date: date,
-                        joke: data.joke,
+                        joke: result,
                         score: 0
                     };
                     reportJokes.push(jokeObj);

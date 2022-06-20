@@ -11,21 +11,21 @@ body {
     background-size: auto;
     background-repeat: no-repeat;
     background-position: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    /* bottom: 0;*/
-    right: 0;
-    margin: auto;
-    width: 100%;
-    min-height:100%;
+    border-style: dotted;
 }
 
-#text-joke {
-    background-size: auto;
-    background-repeat: no-repeat;
-    background-position: center;
-    position: absolute;
+#big-blob {
+    height: 800px;
+    width: 800px;
+    padding: 0;
+    margin: 0;
+    transition: border-radius 1.2s;
+}
+
+#small-blob {
+    height: 200px;
+    width: 200px;
+    transition: border-radius 1.2s;
 }
 
 /* icon style */
@@ -53,12 +53,6 @@ i {
     color: black;
     background-color: gold;
     box-shadow: 10px 15px rgb(0, 0, 0);
-}
-
-.container-fluid {
-    background-color: white;
-    border-radius: 5rem;
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
 }
 
 /* Small devices (landscape phones, 576px and up) */

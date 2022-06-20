@@ -1,67 +1,82 @@
-const DAD_JOKE = "https://icanhazdadjoke.com/";
-const WEATHER = "https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=abd700ead8fc5a6f7b3b5a9ed2b031f6"
 const reportJokes:any = [];
-//clave API meteorologia abd700ead8fc5a6f7b3b5a9ed2b031f6
-// let showWeather = document.getElementById('show-weather');
 
 function getDate() {
-    const date = new Date();
-    let arrDate = date.toISOString().slice(0,10).split("-").reverse();
-    let textDate = arrDate.toString().replace(/,/g, "-");
-    return textDate;
+    return new Date().toLocaleDateString("es-ES");
 };
 
 function getLocation() {
-    return navigator.geolocation.getCurrentPosition((position: GeolocationPosition) => console.log(position));
+    navigator.geolocation.getCurrentPosition(generateWeather);
 }
 
-function generateWeather() {
-    let lat = getLocation()
-    console.log("latitude", lat)
-    let key = 'abd700ead8fc5a6f7b3b5a9ed2b031f6'
-    
+async function generateWeather(position: any) {
+    let showWeather: HTMLElement = document.getElementById('show-weather');
+    let lat = position.coords.latitude;
+    let lon = position.coords.longitude;
+    let key = 'abd700ead8fc5a6f7b3b5a9ed2b031f6';
+    let lang = 'ca'; //catalan
+    let units = 'metric';
+    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=${units}&lang=${lang}`;
+
+    //Get API
     var requestOptions: any = {
-        method: 'GET',
-        redirect: 'follow'
-      };
-      
-      const weather = fetch(`https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=${key}`, requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
+      method: "GET",
+      redirect: "follow",
+    };
+    const result: any = await fetch(url, requestOptions);
+    const data: any = await result.json();
+
+    //Get temperature
+    let temp =  Math.floor(data.main.temp);
+    //Icon
+    let icon = `<img
+    src="http://openweathermap.org/img/wn/${data.weather[0].icon}.png"
+    alt="${data.weather[0].description}"/>`;
+
+    showWeather.innerHTML = `${icon} | ${temp} ºC`;
 };
 
 async function generateJoke() {
+  const DAD_JOKE_URL = "https://icanhazdadjoke.com/";
+  const NORRIS_URL = "https://api.chucknorris.io/jokes/random";
 
-    let options = { 
-        headers: {
-            "Accept" : "application/json" 
-        }
-    };
+  //Get API dad joke
+  let requestOptions1 = {
+    headers: {
+      Accept: "application/json",
+    },
+  };
+  const dadJokes: any = await fetch(DAD_JOKE_URL, requestOptions1);
+  const jokes1: any = await dadJokes.json();
 
-    const dataJokes: any = await fetch(DAD_JOKE, options);
-    const data: any = await dataJokes.json();
+  //Get API chuck norris joke
+  let requestOptions2 = {
+    method: "GET",
+    redirect: "follow",
+  };
 
-    const printJoke: HTMLElement | null = document.getElementById("jokeDisplay");
-    printJoke.innerHTML = data.joke;
+  const chuckJokes: any = await fetch(NORRIS_URL, requestOptions2);
+  const jokes2: any = await chuckJokes.json();
 
-    const date = getDate();
+  let numRandom = Math.round(Math.random());
+  let result = numRandom ? jokes1.joke : jokes2.value;
+  const printJoke: HTMLElement = document.getElementById("jokeDisplay");
+  printJoke.innerHTML = result;
 
-    let jokeObj = {
-        date: date,
-        joke: data.joke,
-        score: 0
-    };
-    reportJokes.push(jokeObj)
+  const date = getDate();
 
-    //console.log("report jokes", reportJokes);
+  let jokeObj = {
+    date: date,
+    joke: result,
+    score: 0,
+  };
+  reportJokes.push(jokeObj);
 };
 
 function rateJoke(score: number) {
   //let index: number = reportJokes.findIndex(i => i.score == 0);
   reportJokes[reportJokes.length -1].score = score;
 
-  console.log("report jokes score", reportJokes)
+  console.log("report jokes score", reportJokes);
   generateJoke();
 };
 
