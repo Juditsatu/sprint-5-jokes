@@ -6,7 +6,7 @@ function getDate() {
 
 function getLocation() {
     navigator.geolocation.getCurrentPosition(generateWeather);
-}
+};
 
 async function generateWeather(position: any) {
     let showWeather: HTMLElement = document.getElementById('show-weather');
@@ -33,6 +33,12 @@ async function generateWeather(position: any) {
     alt="${data.weather[0].description}"/>`;
 
     showWeather.innerHTML = `${icon} | ${temp} ºC`;
+};
+
+function generateBlob(){
+  const numRandom = Math.floor(Math.random() * 5) +1;
+  let blob = document.getElementById("big-blob");
+  blob?.style.backgroundImage = `url('./images/big-blob-${numRandom}.svg')`;
 };
 
 async function generateJoke() {
@@ -70,10 +76,10 @@ async function generateJoke() {
     score: 0,
   };
   reportJokes.push(jokeObj);
+  generateBlob();
 };
 
 function rateJoke(score: number) {
-  //let index: number = reportJokes.findIndex(i => i.score == 0);
   reportJokes[reportJokes.length -1].score = score;
 
   console.log("report jokes score", reportJokes);

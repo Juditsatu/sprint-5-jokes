@@ -7,24 +7,25 @@ body {
     background-size: cover;
 }
 
-.container {
+#big-blob {
+    height: 700px;
     background-size: auto;
     background-repeat: no-repeat;
     background-position: center;
 }
 
-#big-blob {
-    height: 700px;
-    width: 700px;
-    padding: 0;
-    margin: 0;
-    transition: border-radius 1.2s;
+.right-blob {
+    height: 200px;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: right;
 }
 
-#small-blob {
+.left-blob {
     height: 200px;
-    width: 200px;
-    transition: border-radius 1.2s;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: left;
 }
 
 /* icon style */
@@ -58,18 +59,13 @@ i {
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
-    .container-fluid {
-        width: 30rem;
-        border-radius: 4rem;
+    #jokeDisplay {
+        width: 100%;
     }
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-    .container-fluid {
-        width: 30rem;
-        border-radius: 4rem;
-    }
 
     #jokeDisplay {
         width: 100%;
@@ -78,9 +74,6 @@ i {
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-    .container-fluid {
-        width: 55rem;
-    }
 
     #jokeDisplay {
         width: 50%;
@@ -89,9 +82,6 @@ i {
 
 /* X-Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-    .container-fluid {
-        width: 55rem;
-    }
 
     #jokeDisplay {
         width: 50%;
@@ -100,9 +90,6 @@ i {
 
 /* XX-Large devices (larger desktops, 1400px and up) */
 @media (min-width: 1400px) {
-    .container-fluid {
-        width: 70rem;
-    }
 
     #jokeDisplay {
         width: 50%;

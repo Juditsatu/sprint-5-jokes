@@ -42,6 +42,7 @@ function getDate() {
 function getLocation() {
     navigator.geolocation.getCurrentPosition(generateWeather);
 }
+;
 function generateWeather(position) {
     return __awaiter(this, void 0, void 0, function () {
         var showWeather, lat, lon, key, lang, units, url, requestOptions, result, data, temp, icon;
@@ -72,6 +73,12 @@ function generateWeather(position) {
             }
         });
     });
+}
+;
+function generateBlob() {
+    var numRandom = Math.floor(Math.random() * 5) + 1;
+    var blob = document.getElementById("big-blob");
+    blob === null || blob === void 0 ? void 0 : blob.style.backgroundImage = "url('./images/big-blob-".concat(numRandom, ".svg')");
 }
 ;
 function generateJoke() {
@@ -114,6 +121,7 @@ function generateJoke() {
                         score: 0
                     };
                     reportJokes.push(jokeObj);
+                    generateBlob();
                     return [2 /*return*/];
             }
         });
@@ -121,7 +129,6 @@ function generateJoke() {
 }
 ;
 function rateJoke(score) {
-    //let index: number = reportJokes.findIndex(i => i.score == 0);
     reportJokes[reportJokes.length - 1].score = score;
     console.log("report jokes score", reportJokes);
     generateJoke();

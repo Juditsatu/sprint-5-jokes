@@ -18,17 +18,24 @@
 </head>
 <!-- style="background-image: url('./images/blurry-gradient-haikei.svg');" -->
 
-<body class="d-flex flex-column min-vh-100 text-center page-header-image img-fluid">
+<body class="d-flex flex-column min-vh-100 text-center">
     <header class="mb-auto p-3">
         <nav>
-            <h3 class="nav nav-masthead justify-content-start float-md-start text-dark" id="show-weather"></h3>
+            <table class="nav nav-masthead justify-content-start float-md-start text-dark h5">
+                <tbody>
+                    <tr>
+                        <td class="" id="show-weather">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </nav>
-        <div id="small-blob" class="justify-content-end"
-            style="background-image: url('./images/small-blob-1.svg'); background-repeat: no-repeat;"> </div>
     </header>
     <div class="container d-flex py-5 mx-auto flex-column img-fluid w-100 aligns-items-center justify-content-center"
-        style="background-image: url('./images/big-blob.svg');" id="big-blob">
-        <div class="row justify-content-md-center text-break">
+    style="background-image: url('./images/big-blob-1.svg'); transition: 0.1s;" id="big-blob">
+    <div id="small-blob" class="right-blob me-5"
+    style="background-image: url('./images/small-blob-1.svg');"></div>
+    <div class="row justify-content-md-center text-break">
             <div class="col-12" id="text-joke">
                 <h1 class="fw-bolder">Preparat per riure?</h1>
                 <p class="lead p-5 mx-auto" id="jokeDisplay"></p>
@@ -42,7 +49,8 @@
                 </p>
             </div>
         </div>
-        <div style="background-image: url('./images/small-blob-2.svg');"> </div>
+        <div id="small-blob" class="left-blob"
+                style="background-image: url('./images/small-blob-2.svg');"></div>
     </div>
     <footer class="mt-auto py-3 text-white bg-dark">
         <div class="inner">
